@@ -35,23 +35,21 @@ for (let i = 0; i < allowedUsersList.length; i++) {
 
 
 //aggiungere l'eventListner del click sul submit
-document.getElementById('btn').addEventListener('click', function () {
+document.getElementById("btn").addEventListener('click', function () {
 
-    //#BONUS
     //dichiarare variabile che chiami il campo mail all'interno del DOM
-    const email = document.getElementById(mailField).value;
+    const email = document.getElementById("mailField").value;
 
         // creiamo una condizione per verificare che l'indirizzo e-mail inserito dall'utente sia registrato nell'array
     if (allowedUsersList.includes(email)) {
         console.log('User logged in');
-        document.getElementById(positive).innerHTML = (`Welcome to the Boolean portal!`)
+        document.getElementById("positive").innerHTML = (`Welcome to the Boolean portal!`)
 
         // se l'indirizzo e-mail non soddisfa la condizione di sopra, creiamo un messagio di allerta per lo user
     } else {
         console.log('User unknown');
-        document.querySelector(negative).innerHTML = (`⛔️ Warning! Your e-mail address is not registred. Please enter a valid e-mail address to continue.`)
+        document.getElementById("negative").innerHTML = (`⛔️ Warning! Your e-mail address is not registred. Please enter a valid e-mail address to continue.`)
     }
-
 
 
 })
