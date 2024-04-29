@@ -7,51 +7,60 @@
 -log
 */
 
-// Otteniamo l'indirizzo e-mail dello user attraverso il prompt
-
-// let userMail = prompt('Please enter yout e-mail address below:')
-// console.log(`Your email address is: ` + userMail);
-
-
-
-
-
+// Get the e-mail address through the prompt
 let allowedUsersList = [
-'franco.tre@gmail.com',
-'luca89@gmail.com',
-'marco77@gmail.com',
-'milena@gmail.com',
-'rocco69@gmail.com',
-'mario96@gmail.com',
-'gianluigicozza@gmail.com',
-'sara.cinesca@gmail.com' 
+    'franco.tre@gmail.com',
+    'luca89@gmail.com',
+    'marco77@gmail.com',
+    'milena@gmail.com',
+    'rocco69@gmail.com',
+    'mario96@gmail.com',
+    'gianluigicozza@gmail.com',
+    'sara.cinesca@gmail.com'
 ]
 
-// visualizziamo tutti gli elementi dell'array inserendoli nel ciclo for
-for (let i = 0; i < allowedUsersList.length; i++) {
-    const element = allowedUsersList[i];
-    console.log(allowedUsersList[i]);
-}
 
-
-//aggiungere l'eventListner del click sul submit
+//add the event lister for the submit button
 document.getElementById("btn").addEventListener('click', function () {
 
-    //dichiarare variabile che chiami il campo mail all'interno del DOM
-    
+    //declare the variable that call the input from the DOM
     const email = document.getElementById("mailField").value;
-    console.log('User unknown');
-    document.getElementById("negative").innerHTML = (`⛔️ Warning! Your e-mail address is not registred. Please enter a valid e-mail address to continue.`)
 
+    //create two different variabile to give a different style regarding the response 
+    const positive = document.getElementById("positive");
+    const negative = document.getElementById("negative");
+    const body = document.getElementById("doc_body");
+    const header = document.getElementById("doc_header");
 
-        // creiamo una condizione per verificare che l'indirizzo e-mail inserito dall'utente sia registrato nell'array
+    // creiamo una condizione per verificare che l'indirizzo e-mail inserito dall'utente sia registrato nell'array
     if (allowedUsersList.includes(email)) {
-        console.log('User logged in');
-        document.getElementById("positive").innerHTML = (`Welcome to the Boolean portal!`)
+        console.log(`User ${email} logged in`);
 
+        negative.innerHTML = ""
+        positive.innerHTML = ""
+        positive.innerHTML = "Welcome to the Boolean portal!";
+
+        header.innerHTML = "<img src=\"assets/img/logo.png\" alt=\"\">"
+        
+        body.classList.remove("denied")
+        body.classList.add("granted")
+        
         // se l'indirizzo e-mail non soddisfa la condizione di sopra, creiamo un messagio di allerta per lo user
+
+    } 
+    else{
+        console.log(`User ${email}: unknown`);
+
+        negative.innerHTML = ""
+        positive.innerHTML = ""
+        negative.innerHTML = "⛔️ Warning! Your e-mail address is not registred. Please enter a valid e-mail address to continue."
+
+        header.innerHTML = "<img src=\"assets/img/nope.png\" alt=\"\">"
+
+        body.classList.remove("granted")
+        body.classList.add("denied")
     }
 
-    }
+}
 
 )
