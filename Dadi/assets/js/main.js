@@ -6,19 +6,24 @@
 -log
 */
 
-function throwDice() {
+let dice_box;
 
+dice_box = document.getElementById("dice_box");
+
+dice_box.addEventListener("click", function throwDice() {
+    
     let message = null
-    // creiamo due variabaili con i rispettivi Math.random per generare i numeri del dado
-    //per il giocatore
+    // create two variables containing the two Math.random to generate the dice numbers
+
+    //for the player (user)
     const playerDice = Math.floor(Math.random() * 6) + 1;
     console.log(playerDice);
 
-    //per il computer
+    //for the CPU
     const cpuDice = Math.floor(Math.random() * 6) + 1;
     console.log(cpuDice);
 
-    // stabiliamo il vincitore attraverso l'uso di
+    // display the winner:
     if (playerDice > cpuDice) {
         console.log('Player win');
         message = ('Congratulation! You won. 🏆')
@@ -27,23 +32,26 @@ function throwDice() {
         message = ('Oh no! Sorry, you did not win this. 😩')
     } else {
         console.log('Game it is a tie');
-        message = ('Well looks like it is a tie. 🥱')
+        message = ('Well it looks to be a tie. 🥱')
     };
 
-    return message
-}
 
-//dichiariamo la variabile con l'elemento del DOM da cliccare
-let dice_box;
-
-dice_box = document.getElementById("dice_box");
-
-
-dice_box.addEventListener("click", function(message){
-    //dichiariamo la variabile che ci farà manipolare la DOM inserendo il risulto del gioco
+    //declare the DOM node to attach the result
     const result = document.getElementById("result")
+    const player_score = document.getElementById("player_score")
+    const cpu_score = document.getElementById("cpu_score")
 
-    result.insertAdjacentHTML("beforeend", message)
-});
+    result.classList.add('result_style')
+    player_score.classList.add('score_style')
+    cpu_score.classList.add('score_style')
 
+    //clean the previuous string if there
+    result.innerHTML = ("")
+    player_score.innerHTML = ("")
+    cpu_score.innerHTML = ("")
 
+    //insert the result inside the DOM
+    result.innerHTML = message
+    player_score.innerHTML = `YOU ${playerDice}`
+    cpu_score.innerHTML = `CPU ${cpuDice}`
+})
